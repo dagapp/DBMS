@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello obama</title>
+	<script type="text/javascript" src="{{ url_for('static', filename='utils.js') }}"></script>
+</head>
+<body>
+	<table border=1>
+		<tr>
+			{%- for column_name in column_names -%}
+				<td><b>{{ column_name }}</b></td>
+			{%- endfor -%}
+			<td>X</td>
+		</tr>
+	{% for row in rows %}
+		<tr>
+			{% for cell in row %}
+				<td>{{ cell }}</td>
+			{% endfor %}
+			<td><input type=submit value=X onclick="delete_entry(this, {{ row[0] }});"></td>
+		</tr>
+	{% endfor %}	
+	</table>
+	<form action="{{ url_for('add_entry') }}" method=post>
+		value for a: <input type=text name=a>
+		value for b: <input type=text name=b>
+		<input type=submit value=Add>
+	</form>
+</body>
+</html>
